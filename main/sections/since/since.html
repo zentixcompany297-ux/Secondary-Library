@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>since section</title>
+    <link rel="stylesheet" href="since.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="header">
+      <a href="profile/prfile.html" id="cab"
+        ><i class="fa-solid fa-user-tie"></i
+      ></a>
+
+      <div class="search">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Enter search term"
+        />
+
+        <i class="fa-solid fa-magnifying-glass" id="cab"></i>
+      </div>
+
+      <div class="minbox" onclick="openFunction()">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="sidemenu" id="menu">
+      <a href="javascript:void(0);" class="closebtn" onclick="closeFunction()">
+        <i class="fa-solid fa-xmark"></i>
+      </a>
+
+      <h1 class="name-app">Secondary <span> Library</span></h1>
+      <div class="icons">
+        <a href="/main/main.html">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="about.html">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span>About Us</span>
+        </a>
+
+        <a href="problem.html">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Problem Solving</span>
+        </a>
+
+        <a href="setting.html">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="sections" id="books-container"></div>
+
+    <script src="since.js"></script>
+  </body>
+</html>

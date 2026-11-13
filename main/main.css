@@ -1,0 +1,486 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+body {
+    display: block;
+    justify-content: center;
+    height: 100vh;
+    background-color: rgb(60, 60, 61);
+    margin: 0;
+}
+
+i {
+    color: rgba(255, 255, 255, 0.75);
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+i:hover {
+    color: #ffffff;
+}
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 65px;
+    z-index: 9999;
+    
+    /* تأثير الزجاج الشفاف */
+    background: rgba(22, 24, 34, 0.75);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    gap: 20px;
+}
+
+/* 3. شريط البحث المدمج والحديث */
+.header .search {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+/* توهج خفيف عند التركيز للكتابة في البحث */
+.header .search:focus-within {
+    background: rgba(255, 255, 255, 0.14);
+    border-color: #7c3aed;
+    box-shadow: 0 0 18px rgba(124, 58, 237, 0.35);
+}
+
+.header .search input {
+    width: 82%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    padding: 0 18px;
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-align: right;
+}
+
+.header .search input::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+}
+
+.header .search i {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18%;
+    height: 100%;
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    color: #ffffff;
+    font-size: 1.05rem;
+    transition: opacity 0.3s ease;
+}
+
+.header .search i:hover {
+    opacity: 0.9;
+}
+
+/* أيقونات الهيدر (الحساب والقائمة) */
+.header > i {
+    font-size: 1.65rem;
+    padding: 8px;
+    border-radius: 12px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.header > i:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+
+.sidemenu {
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 0; /* تبقى 0 ويتم فتحها بالـ JS (مثلاً: 280px) */
+    z-index: 10000;
+    
+    /* خلفية زجاجية داكنة فاخرة متناسقة مع الكاردات */
+    background: rgba(18, 20, 30, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-left: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: -15px 0 40px rgba(0, 0, 0, 0.65);
+    
+    padding-top: 85px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    transition: width 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    direction: rtl;
+}
+
+/* زر الإغلاق الدائري */
+.sidemenu .closebtn {
+    position: absolute;
+    top: 18px;
+    left: 20px; /* وضعه في اليسار ليتناسب مع اتجاه القائمة العربية */
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.7rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.sidemenu .closebtn:hover {
+    background: rgba(239, 68, 68, 0.2);
+    color: #ef4444;
+    transform: rotate(90deg);
+}
+
+/* عنوان الموقع داخل القائمة الجانبية */
+.sidemenu h1 {
+    text-align: center;
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    margin-bottom: 20px;
+    padding: 0 15px;
+    white-space: nowrap;
+    background: linear-gradient(to right, #bf953f, #fcf6ba, #b38728);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 25px rgba(251, 191, 36, 0.25);
+}
+
+/* روابط القائمة الجانبية */
+.sidemenu a:not(.closebtn) {
+    margin: 0 14px;
+    padding: 13px 18px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #cbd5e1;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    white-space: nowrap; /* يمنع تداخل النص أثناء حركة الفتح والإغلاق */
+    transition: all 0.25s ease;
+}
+
+.sidemenu a:not(.closebtn):hover {
+    background: linear-gradient(90deg, rgba(124, 58, 237, 0.22), transparent);
+    color: #ffffff;
+    transform: translateX(-5px);
+}
+
+.sidemenu a i {
+    font-size: 1.25rem;
+    width: 26px;
+    text-align: center;
+    color: #a78bfa;
+    transition: color 0.25s ease;
+}
+
+.sidemenu a:hover i {
+    color: #fbbf24;
+}
+
+@media (max-width: 768px) {
+    .header {
+        padding: 0 16px;
+        gap: 12px;
+        height: 60px;
+    }
+
+    .header .search {
+        height: 36px;
+    }
+
+    .header .search input {
+        width: 78%;
+        font-size: 0.85rem;
+        padding: 0 12px;
+    }
+
+    .header .search i {
+        width: 22%;
+    }
+
+    .header > i {
+        font-size: 1.45rem;
+        padding: 6px;
+    }
+}
+
+/* الهواتف الصغيرة */
+@media (max-width: 480px) {
+    body {
+        padding-top: 75px;
+    }
+
+    .header {
+        padding: 0 12px;
+        gap: 8px;
+    }
+
+    .header .search input {
+        padding: 0 10px;
+    }
+
+    .sidemenu h1 {
+        font-size: 1.4rem;
+    }
+
+    .sidemenu a:not(.closebtn) {
+        font-size: 0.95rem;
+        padding: 11px 14px;
+    }
+}
+
+
+.slider-container {
+    position: relative;
+    width: 100%;
+    height:75%;
+    overflow: hidden;
+    box-shadow: 2px 5px 8px 10px black;
+}
+
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0; /* إخفاء الصورة افتراضياً */
+    transition: opacity 1s ease-in-out; /* نعومة ظهور واختفاء الصورة */
+}
+
+.slide.active {
+    opacity: 1; 
+}
+
+/* 1. الحاوية الرئيسية شبكية متجاوبة بالكامل دون تعقيد */
+.sections {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 35px;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 30px 20px 80px 20px;
+    box-sizing: border-box;
+    direction: rtl; /* لضمان اتجاه المحتوى العربي بشكل صحيح */
+}
+
+/* 2. تصميم الكارت العصري (Glassmorphism & Depth) */
+.sections .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    
+    /* تأثير زجاجي شفاف فاخر مع خلفية داكنة غنية */
+    background: rgba(25, 28, 36, 0.82);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    
+    border-radius: 24px;
+    padding-bottom: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+    
+    /* حركة انسيابية فائقة النعومة */
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+                box-shadow 0.4s ease,
+                border-color 0.4s ease;
+}
+
+/* تفاعل إضاءة نيونية خفيفة عند التحويم فوق الكارت */
+.sections .card:hover {
+    transform: translateY(-10px) scale(1.01);
+    border-color: rgba(124, 58, 237, 0.5); /* إطار أرجواني نيون خفيف */
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.65),
+                0 0 25px rgba(124, 58, 237, 0.2);
+}
+
+/* 3. الهيدر العلوي المطور (دمج التدرجات المتعددة مع إضاءة داخلية) */
+.sections .card .head {
+    width: 100%;
+    height: 125px;
+    position: relative;
+    overflow: hidden;
+    
+    background: 
+        radial-gradient(circle at top left, rgba(255,0,0,0.45), transparent 50%),
+        radial-gradient(circle at top right, rgba(0,0,255,0.45), transparent 50%),
+        radial-gradient(circle at bottom left, rgba(0,255,0,0.35), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(255,255,0,0.35), transparent 50%),
+        #1e1b2e;
+        
+    border-top-left-radius: 24px;
+    border-top-right-radius: 24px;
+}
+
+/* لمسة ضوئية (Highlight) زجاجية فوق الهيدر */
+.sections .card .head::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.15) 0%, transparent 100%);
+    pointer-events: none;
+}
+
+/* 4. غلاف الكتاب (صورة متداخلة بشكل ثلاثي الأبعاد) */
+.sections .card img {
+    width: 130px;
+    height: 185px;
+    object-fit: cover;
+    border-radius: 14px;
+    margin-top: -75px;
+    z-index: 2;
+    border: 3px solid rgba(255, 255, 255, 0.15);
+    background-color: #2a263d;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.sections .card:hover img {
+    transform: scale(1.06) translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8);
+}
+
+/* 5. عنوان الكتاب (مع تأثير التبريق الذهبي المتحرك الخاص بك) */
+.sections .card .name {
+    font-size: 1.3rem;
+    font-family: sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0 16px;
+    margin: 14px 0 8px 0;
+    line-height: 1.35;
+    
+    background: linear-gradient(
+        to right, 
+        #bf953f 0%, 
+        #fcf6ba 25%, 
+        #b38728 50%, 
+        #fcf6ba 75%, 
+        #bf953f 100%
+    );
+    
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
+    
+    animation: shine 3s linear infinite;
+}
+
+@keyframes shine {
+    0% { background-position: 0% center; }
+    100% { background-position: 200% center; }
+}
+
+/* 6. وصف الكتاب (تنسيق وقطع ذكي للأسطر الزائدة) */
+.sections .card .title {
+    font-size: 0.92rem;
+    color: #94a3b8;
+    padding: 0 20px;
+    line-height: 1.6;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 16px;
+}
+
+/* 7. اسم المؤلف (شارة أنيقة عصرية) */
+.sections .card small {
+    margin-top: auto !important;
+    color: #fbbf24 !important;
+    font-size: 0.85rem;
+    font-weight: 700;
+    background: rgba(245, 158, 11, 0.1);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    padding: 6px 18px;
+    border-radius: 50px;
+    letter-spacing: 0.3px;
+    margin-bottom: 16px;
+    transition: all 0.3s ease;
+}
+
+.sections .card:hover small {
+    background: rgba(245, 158, 11, 0.22);
+    border-color: rgba(245, 158, 11, 0.4);
+}
+
+/* 8. الزر / الرابط العصري المتحرك */
+.sections .card a {
+    display: flex;
+    text-decoration: none;
+    width: 65%;
+    height: 44px;
+    background: linear-gradient(135deg, #7c3aed 0%, #4f46e5 100%);
+    border: none;
+    border-radius: 30px;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.95rem;
+    box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+}
+
+.sections .card a:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(79, 70, 229, 0.6);
+    opacity: 0.95;
+}
+
+/* 📱 متجاوب تماماً مع الشاشات الصغيرة */
+@media (max-width: 600px) {
+    .sections {
+        grid-template-columns: 1fr;
+        padding: 20px 15px 50px 15px;
+        gap: 25px;
+    }
+}
+
+
+
+h3{
+    background-color: black;
+    font-size: 18px;
+    color: white;
+    width: 100%;
+    text-align: center;
+}

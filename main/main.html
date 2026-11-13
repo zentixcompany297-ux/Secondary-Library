@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="rtl" dir="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Secondary Library</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="main.css" />
+  </head>
+  <body>
+    <div class="header">
+      <a href="profile/prfile.html" id="cab"
+        ><i class="fa-solid fa-user-tie"></i
+      ></a>
+
+      <div class="search">
+        <input
+          type="text"
+          id="search-input"
+          class="search-input"
+          placeholder="Enter search term"
+        />
+
+        <i class="fa-solid fa-magnifying-glass" id="cab"></i>
+      </div>
+
+      <div class="minbox" onclick="openFunction()">
+        <i class="fa-solid fa-bars"></i>
+      </div>
+    </div>
+
+    <div class="slider-container">
+      <img src="img/1.png" alt="صورة 1" class="slide active" />
+      <img src="img/2.png" alt="صورة 2" class="slide" />
+      <img src="img/3.png" alt="صورة 3" class="slide" />
+      <img src="img/4.png" alt="صورة 3" class="slide" />
+    </div>
+
+    <div class="sidemenu" id="menu">
+      <a href="javascript:void(0);" class="closebtn" onclick="closeFunction()">
+        <i class="fa-solid fa-xmark"></i>
+      </a>
+
+      <h1 class="name-app">Secondary <span> Library</span></h1>
+      <div class="icons">
+        <a href="main.html">
+          <i class="fa-solid fa-house"></i>
+          <span>Home</span>
+        </a>
+
+        <a href="about.html">
+          <i class="fa-solid fa-circle-exclamation"></i>
+          <span>About Us</span>
+        </a>
+
+        <a href="problem.html">
+          <i class="fa-solid fa-triangle-exclamation"></i>
+          <span>Problem Solving</span>
+        </a>
+
+        <a href="setting.html">
+          <i class="fa-solid fa-gear"></i>
+          <span>Settings</span>
+        </a>
+
+        <!-- خيار تسجيل الخروج -->
+        <a href="javascript:void(0);" id="logout-btn">
+          <i class="fa-solid fa-right-from-bracket"></i>
+          <span>تسجيل الخروج</span>
+        </a>
+      </div>
+    </div>
+
+    <br />
+    <br /><br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+    <br />
+
+    <div class="sections" id="searchable-item">
+      <div class="card" id="sience">
+        <div class="head"></div>
+        <h1 class="name">العلوم التطبيقية</h1>
+        <span class="title"
+          >هنا بعض الكتب التي تتكلم عن الطب وغيره من المواد التطبيقية</span
+        >
+        <a href="sections/since/since.html">الكتب -></a>
+      </div>
+
+      <div class="card" id="space">
+        <div class="head"></div>
+        <h1 class="name">الفضاء</h1>
+        <span class="title"> هنا ستقرأ عن كل ما يخص الفضاء </span>
+        <a href="sections/space/space.html">الكتب-></a>
+      </div>
+
+      <div class="card" id="code">
+        <div class="head"></div>
+        <h1 class="name">البرمجة</h1>
+        <span class="title"
+          >كيفية برمجة وكتابة الاكود وبناء البرامج كل ما يخص كتبه</span
+        >
+        <a href="sections/code/code.html">الكتب -></a>
+      </div>
+
+      <div class="card" id="plan">
+        <div class="head"></div>
+        <h1 class="name">الآلات</h1>
+        <span class="title">تعرف على الآلات سواء الطائرة او الفضائية </span>
+        <a href="sections/plan/plan.html">الكتب -></a>
+      </div>
+    </div>
+
+    <h3>
+      All rights reserved © 2026 by Zentix. The Secondary Library platform and
+      all its contents are protected by intellectual property laws and may not
+      be copied or redistributed without prior written permission.
+    </h3>
+
+    <!-- ملف الجافاسكربت الخاص بتصميم الموقع (السلايدر والبحث) -->
+    <script src="main.js"></script>
+
+    <!-- ملف الجافاسكربت المنفصل الخاص بحماية الصفحة وتسجيل الخروج -->
+    <script type="module" src="../auth.js"></script>
+  </body>
+</html>
